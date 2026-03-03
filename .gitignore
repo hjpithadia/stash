@@ -1,0 +1,8 @@
+build/
+.build/
+.swiftpm/
+*.o
+clippy1000
+clippy1000_bin
+Sources/
+Package.swift
