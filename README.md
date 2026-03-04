@@ -14,15 +14,25 @@ Manage clips from the menubar icon → "Manage Clips".
 
 ## Install
 
-Download `Stash.zip` from [Releases](https://github.com/hjpithadia/stash/releases), unzip, and drag to Applications.
-
-Since Stash is open-source and not signed with an Apple Developer ID, macOS Gatekeeper will block it on first launch. This is normal for any app downloaded outside the App Store that isn't notarized. Run this once in Terminal to clear the quarantine flag:
+### Homebrew (recommended)
 
 ```bash
-xattr -cr ~/Downloads/Stash.app
+brew install --cask hjpithadia/stash/stash-clipboard
 ```
 
-Then open normally. You'll also need to grant Accessibility permission (System Settings → Privacy & Security → Accessibility) for the keyboard shortcuts to work.
+### Manual
+
+Download `Stash.zip` from [Releases](https://github.com/hjpithadia/stash/releases), unzip, and drag to Applications.
+
+### First launch
+
+Stash is open-source and not signed with an Apple Developer ID, so macOS Gatekeeper will block it on first launch. Right-click the app and choose **Open**, or run:
+
+```bash
+sudo xattr -d com.apple.provenance /Applications/Stash.app
+```
+
+You'll also need to grant Accessibility permission (System Settings → Privacy & Security → Accessibility) for the keyboard shortcuts to work.
 
 ## Build from source
 
