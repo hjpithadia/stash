@@ -1,0 +1,33 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build universal binary
+        run: |
+          swiftc -swift-version 5 -O -target arm64-apple-macosx14.0 -o Stash_arm64 main.swift -framework AppKit -framework CoreGraphics
+          swiftc -swift-version 5 -O -target x86_64-apple-macosx14.0 -o Stash_x86 main.swift -framework AppKit -framework CoreGraphics
+          lipo -create Stash_arm64 Stash_x86 -output Stash
+
+      - name: Create app bundle
+        run: |
+          mkdir -p Stash.app/Contents/MacOS
+          cp Stash Stash.app/Contents/MacOS/Stash
+          cp Resources/Info.plist Stash.app/Contents/Info.plist
+          codesign -f -s - Stash.app
+
+      - name: Zip
+        run: ditto -c -k --keepParent Stash.app Stash.zip
+
+      - name: Upload release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.ref_name }} Stash.zip --clobber
