@@ -12,7 +12,19 @@ No fluff. Stash text, paste it later.
 
 Manage clips from the menubar icon → "Manage Clips".
 
-## Build
+## Install
+
+Download `Stash.zip` from [Releases](https://github.com/hjpithadia/stash/releases), unzip, and drag to Applications.
+
+Since Stash is open-source and not signed with an Apple Developer ID, macOS Gatekeeper will block it on first launch. This is normal for any app downloaded outside the App Store that isn't notarized. Run this once in Terminal to clear the quarantine flag:
+
+```bash
+xattr -cr ~/Downloads/Stash.app
+```
+
+Then open normally. You'll also need to grant Accessibility permission (System Settings → Privacy & Security → Accessibility) for the keyboard shortcuts to work.
+
+## Build from source
 
 ```bash
 swiftc -swift-version 5 -O -o Stash main.swift -framework AppKit -framework CoreGraphics
@@ -24,10 +36,6 @@ Or use the bundle script to create a `.app`:
 ./scripts/bundle.sh
 ```
 
-## Requirements
-
-- macOS 14+
-- Accessibility permission (System Settings → Privacy & Security → Accessibility)
 
 ## License
 
