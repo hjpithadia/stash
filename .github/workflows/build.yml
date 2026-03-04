@@ -28,7 +28,12 @@ jobs:
       - name: Zip
         run: ditto -c -k --keepParent Stash.app Stash.zip
 
-      - name: Upload release
+      - name: Create release & upload
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.ref_name }} Stash.zip --clobber
+        run: |
+          gh release create ${{ github.ref_name }} Stash.zip \
+            --title "Stash ${{ github.ref_name }}" \
+            --notes "Universal binary (Apple Silicon + Intel). Right-click → Open on first launch." \
+            --latest \
+          || gh release upload ${{ github.ref_name }} Stash.zip --clobber
