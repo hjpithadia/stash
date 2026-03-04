@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleName</key>
-	<string>Clippy1000</string>
+	<string>Stash</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.clippy1000.app</string>
+	<string>com.stash.clipboard</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -13,7 +13,7 @@
 	<key>LSUIElement</key>
 	<true/>
 	<key>CFBundleExecutable</key>
-	<string>Clippy1000</string>
+	<string>Stash</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 </dict>
